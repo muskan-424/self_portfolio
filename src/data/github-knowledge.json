@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-09-27T16:18:57.763Z",
+  "chunks": [
+    {
+      "id": "gh:MindCare-App:mindcare-app:0",
+      "source": "GitHub · MindCare-App",
+      "url": "https://github.com/muskan-424/MindCare-App",
+      "title": "MindCare-App: MindCare App",
+      "text": "React Native mental health platform with an Express/MongoDB API, AI assistant (Tink), therapist booking, mood tracking, and an optional admin dashboard."
+    },
+    {
+      "id": "gh:MindCare-App:project-structure:0",
+      "source": "GitHub · MindCare-App",
+      "url": "https://github.com/muskan-424/MindCare-App",
+      "title": "MindCare-App: Project structure",
+      "text": "| Path | Description |\n|------|-------------|\n| src/ | React Native mobile app |\n| backend/ | Express API (deployed on Vercel) |\n| admin/ | Vite admin dashboard (user issues & mood review) |\n| scripts/verify-production.js | Production smoke checks |"
+    },
+    {
+      "id": "gh:MindCare-App:long-lived-api-websocket-tink-api-health-ready-:0",
+      "source": "GitHub · MindCare-App",
+      "url": "https://github.com/muskan-424/MindCare-App",
+      "title": "MindCare-App: Long-lived API (WebSocket Tink + /api/health/ready)",
+      "text": "Vercel is fine for REST, admin, and mobile CRUD. For real-time Tink chat (/api/chat/ws), SLA background jobs, and warm Mongo readiness, deploy the same backend/ to a always-on host:\n\nOption A — Render (blueprint included)\n\n1. Render Dashboard → New Blueprint → connect this repo (render.yaml at root)\n2. Set secrets: MONGODBURI, JWTSECRET, ADMINTOKEN, GOOGLEAPIKEY, …\n3. After deploy, point the mobile app at the Render URL in src/utils/route.js\n4. Set admin VITEAPIURL to the same host if you move off Vercel entirely\n\nOption B — Fly.io\n\nOption C — Local full stack\n\n/api/chat/capabilities returns websocket: false on Vercel and true on long-lived hosts — the mobile app uses REST automatically when WebSocket is unavailable."
+    },
+    {
+      "id": "gh:air-tasker:vayutask-ai-india-gig-marketplace:0",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: VayuTask AI  India Gig Marketplace",
+      "text": "VayuTask AI is an AI-native peer-to-peer services marketplace (Airtasker-style) optimized for the Indian gig economy. The repo contains a FastAPI backend (backendfastapi/) and a Next.js web app (frontendnextjs/)."
+    },
+    {
+      "id": "gh:air-tasker:core-features:0",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Core Features",
+      "text": "- AI Task Parsing (For Posters):\n - Voice-to-Task: Record audio in native languages to auto-generate structured tasks.\n - Image-to-Task: Upload photos for Vision AI to analyze and suggest job descriptions.\n - Smart Budgeting: AI suggests a fair price range based on historical data.\n\n- AI Matchmaking & Vetting (For Taskers):\n - Skill Extraction: AI extracts skills from voice chats or past work photos.\n - Hyper-Personalized Feed: Precise task pushing based on location, performance, and skills.\n\n- AI-Mediated Communication:\n - Real-time Translation Chat: Seamless cross-language communication.\n - Auto-Negotiator Bot: Mediates fair pricing automatically.\n\n- Trust & Safety:\n - Automated KYC: Facial recognition matching with Aadhaar/PAN.\n - Outcome Verification: Vision AI verifies \"before\" and \"after\" photos before escrow release."
+    },
+    {
+      "id": "gh:air-tasker:marketplace-flow:0",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Marketplace flow",
+      "text": "1. Post: a poster publishes a task (AI drafts it from text, voice, or photos).\n2. Offers: taskers send a price and message (POST /api/tasks/{id}/offers); they can update or withdraw it while the task is open.\n3. Assign: the poster compares offers (price, rating, message) and accepts one (POST /api/tasks/{id}/offers/{offerid}/accept). Other offers are declined and the offer price becomes the agreed scope.\n4. Pay: escrow holds the task price plus the poster service fee. On release the tasker is paid the task price minus the tasker service fee. GET /api/tasks/fees/quote?price= shows the breakdown.\n5. Cancel: POST /api/tasks/{id}/cancel. Free before assignment. After assignment the canceller pays CANCELLATIONFEEPERCENT of the price: a poster's fee is kept from the escrow refund, while a tasker's fee is recorded against them and the poster is refunded in full. Verified or disputed work goes through disputes instead."
+    },
+    {
+      "id": "gh:air-tasker:marketplace-flow:1",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Marketplace flow",
+      "text": "One account, both roles. Any account can post tasks and make offers. role (POSTER/TASKER) is only the default view, switched with PUT /api/users/me/mode. GET /api/tasks/mine?view=all|posted|working lists both sides.\nFees, limits, and the legacy instant accept are configured in backendfastapi/.env (see .env.example).\nTask discovery. A task's taskschema carries locationType (INPERSON/REMOTE) and timing\n({type: FLEXIBLE|ONDATE|BEFOREDATE, date}), set by the AI drafter or edited before publish. Remote\ntasks show in every tasker's feed regardless of service-area PIN; GET /api/tasks/feed?locationtype=REMOTE\nfilters to them.\nPublic questions. Anyone can ask a question on an open task (POST /api/tasks/{id}/questions); only\nthe poster can answer (POST /api/tasks/{id}/questions/{questionid}/answer). Questions close once a\ntasker is assigned.\nPhone verification. POST /api/verification/phone/request-otp (optional phone to set/update it) and\n/phone/verify mirror the email OTP flow over SMS — see SMSGATEWAYURL in .env.example (codes log to\nthe terminal until a gateway is wired up)."
+    },
+    {
+      "id": "gh:air-tasker:marketplace-flow:2",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Marketplace flow",
+      "text": "Legal pages. Draft Terms of Service, Privacy Policy, Community Guidelines, and Cancellation Policy live\nunder /legal/ in the frontend and are linked from the footer and the registration form. They need a\nlegal review before go-live — see the banner on each page."
+    },
+    {
+      "id": "gh:air-tasker:tech-stack:0",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Tech Stack",
+      "text": "- Backend: Python, FastAPI\n- Database: PostgreSQL (with Alembic for migrations)\n- AI Models: Gemini 2.0 Flash & Pro Vision, Bhashini API\n- Payments & Identity: Razorpay (Escrow), DigiLocker API"
+    },
+    {
+      "id": "gh:air-tasker:frontend-next-js-:0",
+      "source": "GitHub · air-tasker",
+      "url": "https://github.com/muskan-424/air-tasker",
+      "title": "air-tasker: Frontend (Next.js)",
+      "text": "The web UI lives in frontendnextjs/ (brand name: VayuTask AI).\n\nOpen http://localhost:3000 and register or log in.\n\nHow the frontend talks to the API\n\n- REST: By default NEXTPUBLICAPIBASE is empty. The browser calls /api/... on the Next dev server; next.config.mjs rewrites those requests to http://localhost:4000 (override with NEXTPUBLICAPIREWRITETARGET).\n- WebSockets (chat, notifications): Must hit the API directly — set NEXTPUBLICWSBASE=ws://localhost:4000 in .env.local (included in .env.local.example).\n\nDefinition of done (local): With docker compose up running, login at http://localhost:3000/login succeeds and the navbar shows API online."
+    },
+    {
+      "id": "gh:food-delivery-app:tomato-food-ordering-website:0",
+      "source": "GitHub · food-delivery-app",
+      "url": "https://github.com/muskan-424/food-delivery-app",
+      "title": "food-delivery-app: TOMATO - Food Ordering Website",
+      "text": "This repository hosts the source code for TOMATO, a dynamic food ordering website built with the MERN Stack. It offers a user-friendly platform for seamless online food ordering."
+    },
+    {
+      "id": "gh:food-delivery-app:core-features:0",
+      "source": "GitHub · food-delivery-app",
+      "url": "https://github.com/muskan-424/food-delivery-app",
+      "title": "food-delivery-app: Core Features",
+      "text": "- User Panel\n- Admin Panel\n- JWT Authentication\n- Password Hashing with Bcrypt\n- Cash on Delivery (COD) Payment\n- Login/Signup\n- Logout\n- Add to Cart\n- Place Order\n- Order Management\n- Products Management\n- Filter Food Products\n- Authenticated APIs\n- REST APIs\n- Role-Based Identification"
+    },
+    {
+      "id": "gh:food-delivery-app:advanced-features-new-:0",
+      "source": "GitHub · food-delivery-app",
+      "url": "https://github.com/muskan-424/food-delivery-app",
+      "title": "food-delivery-app: Advanced Features (New)",
+      "text": "- ✅ User Profile Management - Profile customization, picture upload, phone number, password change\n- ✅ Address Management - Multiple addresses, address book, auto-save, email & country support, address manager UI\n- ✅ Order Tracking - Real-time order status, timeline\n- ✅ Reviews & Ratings - Food ratings, review comments, sentiment analysis, per-order-item reviews, reviewer info display\n- ✅ Multi-Restaurant Support - Restaurant management\n- ✅ Delivery Tracking - Live delivery tracking\n- ✅ Payment System - Multiple payment methods (UPI, Net Banking, Cards, Wallets, COD), payment history, admin payment management\n- ✅ Offers & Discounts - Comprehensive offers system with payment method discounts, free delivery, first order discounts, admin offer management\n- ✅ Free Delivery - Automatic free delivery above ₹150 (configurable)\n- ✅ Payment Method Discounts - Special discounts for UPI, cards, wallets, etc.\n- ✅ Wishlist/Favorites - Save favorite items\n- ✅ Customer Support - Ticket system, FAQ\n- ✅ Location Services - Distance calculation, nearby restaurants"
+    },
+    {
+      "id": "gh:food-delivery-app:advanced-features-new-:1",
+      "source": "GitHub · food-delivery-app",
+      "url": "https://github.com/muskan-424/food-delivery-app",
+      "title": "food-delivery-app: Advanced Features (New)",
+      "text": "- ✅ Search & Filtering - Text search, price range, sorting\n- ✅ Notifications - Order updates, status notifications\n- ✅ Order Cancellation - Users can cancel orders\n- ✅ Review Management - Admin can manage and filter reviews (positive/negative)\n- ✅ Sentiment Analysis - AI-powered automatic review classification\n- ✅ Review Updates - Users can update their previous reviews\n- ✅ Admin Management - Create up to 2 admin accounts with secure validation\n- ✅ Currency - All prices displayed in Indian Rupees (INR)"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:peerflow-peer-review-allocation-system:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: PeerFlow  Peer Review Allocation System",
+      "text": "A premium, full-stack peer review allocation system built to automate student peer grading assignments with robust constraints, workload balancing, and rich visual analytics.\n\nDeveloped by Team Code Fixers during the Xebia Internship.\n\n---"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:the-team-code-fixers:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: The Team Code Fixers",
+      "text": "Sambhav — Backend REST API & Controllers\n Priyansh — Database Schema Design & Prisma Migrations\n Aastha — Peer Review Allocation Algorithm Design\n Muskan — Unit Test Suites & Constraint Verification\n Atharv — React + Vite Frontend Application & UI Components\n\n---"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:frontend:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Frontend",
+      "text": "Core: React 19, TypeScript, Vite\n Styling: Vanilla CSS (Harmonious premium dark mode design, HSL custom palette, responsive layout, fluid micro-animations)\n Routing: React Router DOM (v6)\n API Client: Axios (configured with baseURL to port 3000, graceful offline fallbacks to mock data)\n Data Visualization: Recharts (Fairness metrics, workload distribution, allocation summary charts)\n Icons: Lucide React"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:backend:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Backend",
+      "text": "Core: Node.js, Express, TypeScript\n Database Access: Prisma ORM (Object-Relational Mapping)\n Validation: Zod (type-safe input validation)\n Authentication: JSON Web Token (JWT) with role-based access control (Instructor vs. Student) & bcrypt password hashing\n Test Suite: Jest & ts-jest (100% test coverage on core constraint logic)\n Utility: Nodemon (hot-reloading in dev mode)"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:database:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Database",
+      "text": "Database: PostgreSQL (relational model with cascading constraints and unique index guards)\n\n---"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:core-feature-allocation-engine-allocation-service-ts-:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Core Feature Allocation Engine (allocation.service.ts)",
+      "text": "The system uses a greedy constraint-first allocation algorithm designed by Aastha and implemented in the backend services. When the allocation run is triggered, the engine evaluates candidates for each submission through the following multi-stage pipeline:"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:enforced-constraints:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Enforced Constraints",
+      "text": "1. No Self Review (HC-01): Students cannot review their own submissions.\n2. No Same Team Review (HC-02): Students in the same team cannot review each other's submissions.\n3. Min 2 Reviews per Submission (HC-03/HC-06): Every submission must receive exactly 2 peer reviews.\n4. No Duplicate Assignment (HC-04): A student cannot be assigned to review the same submission twice.\n5. Active Students Only (HC-05): Inactive or dropped students are excluded from the reviewer pool.\n6. Avoid Repeat Pairs (SC-01): The system avoids assigning a student to review a peer they have reviewed in a previous assignment (unless pool size constraints necessitate relaxation).\n7. Workload Balancing (SC-02): Review tasks are assigned first to students who have the fewest reviews scheduled to ensure fairness.\n\n---"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:frontend-view-8-screens-:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Frontend View (8 Screens)",
+      "text": "1. Dashboard: Live system status overview, total reviews, submission coverage rates, and recent activity feed.\n2. Students: Detailed list of all active/inactive students, search, and workload status.\n3. Teams: Cards summarizing team structure, membership lists, and projects.\n4. Submissions: Track the workflow status (PENDING, UNDERREVIEW, COMPLETE) of all student submissions.\n5. Allocation Engine: Interface for instructors to execute the allocation engine on assignments, configure parameters, and visualize results.\n6. Review Tasks: List of reviews assigned to the logged-in student.\n7. Review Workspace: Interactive peer grading panel with feedback comments and a star-rating form.\n8. Fairness Analytics: Breakdown of the Gini coefficient, workload parity index, and workload distributions.\n\n---"
+    },
+    {
+      "id": "gh:peer-review-allocation-system:authentication-security:0",
+      "source": "GitHub · peer-review-allocation-system",
+      "url": "https://github.com/muskan-424/peer-review-allocation-system",
+      "title": "peer-review-allocation-system: Authentication & Security",
+      "text": "All API endpoints (except /api/v1/auth/login) require Bearer JWT token verification:\n\nEndpoints are guarded by role checking:\n- Instructors have full CRUD permissions and can run/configure the allocation engine.\n- Students can only view/submit their own submissions, view assigned review tasks, and submit peer grades."
+    }
+  ]
+}

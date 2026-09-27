@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+.env
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+npm-debug.log*
+
+# raw source resumes (the site serves public/Muskan_Mittal_Resume.pdf)
+/Muskan_Mittal.pdf
+/resumes.pdf
