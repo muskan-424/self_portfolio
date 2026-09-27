@@ -57,6 +57,7 @@ export const profile = {
     "Outside internships, I build full products end to end. MindCare is a mental-health platform with an NLP risk pipeline and a RAG recommendation layer. VayuTask AI is an AI-native gig marketplace on FastAPI and Next.js. I care about the unglamorous parts too: RBAC, caching, test suites, CI and runbooks.",
   ],
   resumeUrl: "/Muskan_Mittal_Resume.pdf",
+  photoUrl: "/muskan.jpg",
   email: "muskanmittal151@gmail.com",
   phone: "+91 87088 73229",
 };

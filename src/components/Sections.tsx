@@ -1,4 +1,5 @@
 import { certifications, education, experience, profile, projects, skills, socials, stats } from "@/data/profile";
+import Image from "next/image";
 import { AskButton } from "./AskButton";
 import { ArrowUpRightIcon, ChatIcon, CheckBadgeIcon, FileIcon, GitHubIcon, socialIcon } from "./Icons";
 
@@ -66,10 +67,20 @@ export function Hero() {
       <div className="container">
         <div className="hero-grid">
           <div>
-            <span className="status">
-              <span className="status-dot" aria-hidden="true" />
-              {profile.availability}
-            </span>
+            <div className="hero-id">
+              <Image
+                className="hero-avatar"
+                src="/muskan-avatar.jpg"
+                alt={`Portrait of ${profile.name}`}
+                width={80}
+                height={80}
+                priority
+              />
+              <span className="status">
+                <span className="status-dot" aria-hidden="true" />
+                {profile.availability}
+              </span>
+            </div>
             <h1>
               {profile.name}
               <span className="hero-role">
@@ -146,14 +157,29 @@ export function About() {
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
           </div>
-          <dl className="facts" data-reveal>
-            {facts.map(([k, v]) => (
-              <div className="fact" key={k}>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="about-side" data-reveal>
+            <figure className="portrait">
+              <Image
+                src={profile.photoUrl}
+                alt={`${profile.name}, ${profile.title}`}
+                width={800}
+                height={800}
+                sizes="(max-width: 900px) 100vw, 400px"
+              />
+              <figcaption>
+                <b>{profile.name}</b>
+                <span>{profile.title}</span>
+              </figcaption>
+            </figure>
+            <dl className="facts">
+              {facts.map(([k, v]) => (
+                <div className="fact" key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
     </section>

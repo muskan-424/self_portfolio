@@ -20,8 +20,9 @@ export const metadata: Metadata = {
     type: "profile",
     title: `${profile.name} · ${profile.title}`,
     description,
+    images: [{ url: profile.photoUrl, width: 800, height: 800, alt: profile.name }],
   },
-  twitter: { card: "summary", title: `${profile.name} · ${profile.title}`, description },
+  twitter: { card: "summary", title: `${profile.name} · ${profile.title}`, description, images: [profile.photoUrl] },
 };
 
 export const viewport: Viewport = {
@@ -39,6 +40,7 @@ const personJsonLd = {
   "@type": "Person",
   name: profile.name,
   jobTitle: profile.title,
+  image: profile.photoUrl,
   email: `mailto:${profile.email}`,
   alumniOf: "University of Petroleum and Energy Studies (UPES)",
   sameAs: socials.filter((s) => s.href.startsWith("http")).map((s) => s.href),
