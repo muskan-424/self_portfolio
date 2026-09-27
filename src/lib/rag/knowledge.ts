@@ -15,7 +15,7 @@ function buildKnowledgeBase(): Chunk[] {
     id: "profile:summary",
     source: "Resume · Summary",
     title: `${profile.name}: ${profile.title}`,
-    text: `${profile.name} is a ${profile.title} based in ${profile.location}. ${profile.summary} Availability: ${profile.availability}.`,
+    text: `${profile.name} is a ${profile.title} from ${profile.location}, currently studying at ${profile.college}. Her internships at Xebia (Jun–Jul 2026) and Teal Feed (Jun–Jul 2025) are both completed. ${profile.summary} Availability: ${profile.availability}.`,
   });
   add({
     id: "profile:about",

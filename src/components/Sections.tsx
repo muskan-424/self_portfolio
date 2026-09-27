@@ -88,8 +88,8 @@ export function Hero() {
               </span>
             </h1>
             <p className="hero-lede">
-              {profile.headline} Final-year B.Tech CSE (Full Stack AI) at UPES. Backend intern at{" "}
-              <strong>Xebia</strong>, previously software engineer intern at <strong>Teal Feed</strong>.
+              {profile.headline} Final-year B.Tech CSE (Full Stack AI) at UPES, Dehradun. Previously interned at{" "}
+              <strong>Xebia</strong> (backend) and <strong>Teal Feed</strong> (software engineering).
             </p>
             <div className="hero-ctas">
               <a className="btn btn-primary" href="#projects">
@@ -141,9 +141,9 @@ export function Hero() {
 
 export function About() {
   const facts = [
-    ["Based in", profile.location],
-    ["Studying", "B.Tech CSE (Full Stack AI), UPES · 2023–27"],
-    ["Currently", "Backend Developer Intern, Xebia"],
+    ["From", profile.location],
+    ["Studying", "B.Tech CSE (Full Stack AI), UPES Dehradun · 2023–27"],
+    ["Internships", "Xebia (Jun–Jul 2026) · Teal Feed (Jun–Jul 2025)"],
     ["Focus", "Full-stack web, backend APIs, applied GenAI (RAG)"],
     ["Languages", "JavaScript, TypeScript, Python, Java, C, SQL"],
   ];

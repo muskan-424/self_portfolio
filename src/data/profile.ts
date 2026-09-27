@@ -44,7 +44,8 @@ export const profile = {
   firstName: "Muskan",
   title: "Full-Stack & GenAI Engineer",
   headline: "I build secure, role-based web platforms and ground AI features in real data.",
-  location: "Dehradun, India",
+  location: "Sirsa, Haryana, India",
+  college: "UPES, Dehradun",
   availability: "Open to SDE / Full-Stack internships and new-grad roles (Class of 2027)",
   summary:
     "Final-year B.Tech Computer Science (Full Stack AI) student at UPES, Dehradun, with two software internships (Xebia and Teal Feed). " +
